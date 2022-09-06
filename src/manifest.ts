@@ -3,15 +3,16 @@ import { ManifestType } from "@src/manifest-type";
 
 const manifest: ManifestType = {
   manifest_version: 3,
-  name: packageJson.name,
+  name: "Quotes & Jokes",
   version: packageJson.version,
   description: packageJson.description,
   options_page: "src/pages/options/index.html",
   background: { service_worker: "src/pages/background/index.js" },
   action: {
     default_popup: "src/pages/popup/index.html",
-    default_icon: "icon-34.png",
+    default_icon: "icon-32.png",
   },
+  "permissions": ["storage", "activeTab"],
   chrome_url_overrides: {
     newtab: "src/pages/newtab/index.html",
   },
@@ -20,7 +21,7 @@ const manifest: ManifestType = {
   },
   content_scripts: [
     {
-      matches: ["http://*/*", "https://*/*", "<all_urls>"],
+      matches: ["https://www.google.com/*", "<all_urls>"],
       js: ["src/pages/content/index.js"],
       css: ["assets/css/contentStyle.chunk.css"],
     },
@@ -32,7 +33,7 @@ const manifest: ManifestType = {
         "assets/js/*.js",
         "assets/css/*.css",
         "icon-128.png",
-        "icon-34.png",
+        "icon-32.png",
       ],
       matches: ["*://*/*"],
     },
